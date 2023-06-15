@@ -1275,6 +1275,20 @@ fi
 
 echo " done!"
 
+echo -n "[Redis] downloading..."
+git clone https://github.com/phpredis/phpredis.git >> "$DIR/install.log" 2>&1
+echo -n " checking..."
+cd phpredis
+"$DIR"/bin/php7/bin/phpize >> "$DIR/install.log" 2>&1
+./configure --with-php-config="$DIR/bin/php7/bin/php-config" --disable-redis-session >> "$DIR/install.log" 2>&1
+echo -n " compiling..."
+make >> "$DIR/install.log" 2>&1
+echo -n " installing..."
+make install >> "$DIR/install.log" 2>&1
+echo "extension=redis.so" >> "$DIR/bin/php7/bin/php.ini"
+
+echo " done!"
+
 if [[ "$HAVE_XDEBUG" == "yes" ]]; then
 	get_github_extension "xdebug" "$EXT_XDEBUG_VERSION" "xdebug" "xdebug"
 	echo -n "[xdebug] checking..."
