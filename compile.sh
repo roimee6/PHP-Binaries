@@ -1175,6 +1175,7 @@ $THREAD_EXT_FLAGS \
 --without-iconv \
 --with-pdo-sqlite \
 --with-pdo-mysql \
+--with-pdo-pgsql \
 --with-pic \
 --enable-phar \
 --enable-ctype \
